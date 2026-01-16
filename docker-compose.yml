@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: cavetechlabs-web
+    volumes:
+      - .:/app
+      - /app/__pycache__
+      - db_volume:/app/db
+    ports:
+      - "8000:8000"
+      - "5678:5678"
+    environment:
+      - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=cavetechlabs.settings
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    networks:
+      - cavetechlabs-network
+
+volumes:
+  db_volume:
+
+networks:
+  cavetechlabs-network:
+    driver: bridge

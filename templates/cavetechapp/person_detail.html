@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}{{ person.name }} - The Cave Tech{% endblock %}
+
+{% block content %}
+<div class="detail-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="{% url 'cavetechapp:index' %}">Home</a> / 
+            <a href="{% url 'cavetechapp:people_list' %}">Members</a> / 
+            {{ person.name }}
+        </div>
+        <h1>{{ person.name }}</h1>
+        {% if person.title %}
+            <p style="font-size: 1.2rem; margin-top: 0.5rem;">{{ person.title }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+            <div>
+                {% if person.image %}
+                    <div class="detail-image">
+                        <img src="{{ person.image.url }}" alt="{{ person.name }}">
+                    </div>
+                {% else %}
+                    <div class="detail-image" style="font-size: 5rem;">👤</div>
+                {% endif %}
+            </div>
+            <div>
+                {% if person.bio %}
+                    <h2 style="margin-bottom: 1rem; color: #1a1a2e;">About</h2>
+                    <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">{{ person.bio }}</p>
+                {% endif %}
+                
+                {% if person.email %}
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: #1a1a2e; margin-bottom: 0.5rem;">Contact</h3>
+                        <p><a href="mailto:{{ person.email }}" style="color: #00d4ff; text-decoration: none;">{{ person.email }}</a></p>
+                    </div>
+                {% endif %}
+                
+                {% if projects %}
+                    <div>
+                        <h3 style="color: #1a1a2e; margin-bottom: 1rem;">Projects</h3>
+                        <ul style="list-style: none;">
+                            {% for project in projects %}
+                                <li style="margin-bottom: 0.5rem;">
+                                    <a href="{% url 'cavetechapp:project_detail' project.slug %}" style="color: #00d4ff; text-decoration: none; font-weight: 600;">
+                                        → {{ project.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

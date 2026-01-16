@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} - The Cave Tech{% endblock %}
+
+{% block content %}
+<div class="detail-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="{% url 'cavetechapp:index' %}">Home</a> / 
+            <a href="{% url 'cavetechapp:projects_list' %}">Projects</a> / 
+            {{ project.title }}
+        </div>
+        <h1>{{ project.title }}</h1>
+        <p style="margin-top: 0.5rem;">{{ project.get_category_display }}</p>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+            <div>
+                {% if project.image %}
+                    <div class="detail-image">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    </div>
+                {% else %}
+                    <div class="detail-image" style="font-size: 5rem;">🎨</div>
+                {% endif %}
+            </div>
+            <div>
+                <h2 style="margin-bottom: 1rem; color: #1a1a2e;">About this Project</h2>
+                <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">{{ project.description }}</p>
+                
+                {% if project.creator %}
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <h3 style="color: #1a1a2e; margin-bottom: 1rem;">Created by</h3>
+                        <a href="{% url 'cavetechapp:person_detail' project.creator.pk %}" 
+                           style="display: inline-block; color: #00d4ff; text-decoration: none; font-weight: 600;">
+                            {{ project.creator.name }}
+                        </a>
+                        {% if project.creator.title %}
+                            <p style="color: #666; margin-top: 0.5rem;">{{ project.creator.title }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <p style="color: #666; font-size: 0.9rem;">Created</p>
+                        <p style="color: #1a1a2e; font-weight: 600;">{{ project.created_at|date:"M d, Y" }}</p>
+                    </div>
+                    <div>
+                        <p style="color: #666; font-size: 0.9rem;">Category</p>
+                        <p style="color: #1a1a2e; font-weight: 600;">{{ project.get_category_display }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if related_projects %}
+        <section style="margin-top: 3rem; padding-top: 3rem; border-top: 1px solid #e0e0e0;">
+            <h2 class="section-title">Related Projects</h2>
+            <div class="grid">
+                {% for related in related_projects %}
+                <a href="{% url 'cavetechapp:project_detail' related.slug %}" style="text-decoration: none;">
+                    <div class="card">
+                        {% if related.image %}
+                            <div class="card-image">
+                                <img src="{{ related.image.url }}" alt="{{ related.title }}">
+                            </div>
+                        {% else %}
+                            <div class="card-image">🎨</div>
+                        {% endif %}
+                        <div class="card-content">
+                            <h3 class="card-title">{{ related.title }}</h3>
+                            {% if related.creator %}
+                                <div class="card-meta">by {{ related.creator.name }}</div>
+                            {% endif %}
+                            <p class="card-description">{{ related.description|truncatewords:15 }}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

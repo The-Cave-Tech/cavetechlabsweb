@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}The Cave Tech - Home{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1>Welcome to The Cave Tech</h1>
+        <p>Oslo's Premier Maker Space & Community Workshop</p>
+        <p style="margin-top: 1rem; font-size: 1rem;">Explore our talented members and innovative projects</p>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        {% if featured_projects %}
+        <section class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid">
+                {% for project in featured_projects %}
+                <a href="{% url 'cavetechapp:project_detail' project.slug %}" style="text-decoration: none;">
+                    <div class="card">
+                        {% if project.image %}
+                            <div class="card-image">
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            </div>
+                        {% else %}
+                            <div class="card-image">🎨</div>
+                        {% endif %}
+                        <div class="card-content">
+                            <h3 class="card-title">{{ project.title }}</h3>
+                            {% if project.creator %}
+                                <div class="card-meta">by {{ project.creator.name }}</div>
+                            {% endif %}
+                            <p class="card-description">{{ project.description|truncatewords:20 }}</p>
+                            <span class="badge">{{ project.get_category_display }}</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+        
+        {% if people %}
+        <section class="section">
+            <h2 class="section-title">Our Members</h2>
+            <div class="grid">
+                {% for person in people %}
+                <a href="{% url 'cavetechapp:person_detail' person.pk %}" style="text-decoration: none;">
+                    <div class="card">
+                        {% if person.image %}
+                            <div class="card-image">
+                                <img src="{{ person.image.url }}" alt="{{ person.name }}">
+                            </div>
+                        {% else %}
+                            <div class="card-image">👤</div>
+                        {% endif %}
+                        <div class="card-content">
+                            <h3 class="card-title">{{ person.name }}</h3>
+                            {% if person.title %}
+                                <div class="card-meta">{{ person.title }}</div>
+                            {% endif %}
+                            {% if person.bio %}
+                                <p class="card-description">{{ person.bio|truncatewords:15 }}</p>
+                            {% else %}
+                                <p class="card-description"><em>Member of The Cave Tech</em></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

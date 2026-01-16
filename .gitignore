@@ -1,0 +1,61 @@
+# Environment and credentials - NEVER commit these
+.env
+.env.local
+.env.*.local
+admin_credentials.json
+credentials.json
+secrets.json
+*_credentials.json
+*_secrets.json
+
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+db.sqlite3
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Django
+staticfiles/
+media/
+.cache/
+
+# Node (if ever needed)
+node_modules/
+npm-debug.log
+
+# Misc
+.coverage
+.pytest_cache/
+htmlcov/
+

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Members - The Cave Tech{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1>Our Members</h1>
+        <p>Meet the talented makers at The Cave Tech</p>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        {% if people %}
+        <div class="grid">
+            {% for person in people %}
+            <a href="{% url 'cavetechapp:person_detail' person.pk %}" style="text-decoration: none;">
+                <div class="card">
+                    {% if person.image %}
+                        <div class="card-image">
+                            <img src="{{ person.image.url }}" alt="{{ person.name }}">
+                        </div>
+                    {% else %}
+                        <div class="card-image">👤</div>
+                    {% endif %}
+                    <div class="card-content">
+                        <h3 class="card-title">{{ person.name }}</h3>
+                        {% if person.title %}
+                            <div class="card-meta">{{ person.title }}</div>
+                        {% endif %}
+                        {% if person.bio %}
+                            <p class="card-description">{{ person.bio|truncatewords:15 }}</p>
+                        {% else %}
+                            <p class="card-description"><em>Member of The Cave Tech</em></p>
+                        {% endif %}
+                        {% if person.email %}
+                            <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                                ✉️ {{ person.email }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 3rem 0;">
+            <p style="font-size: 1.2rem; color: #666;">No members found yet.</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

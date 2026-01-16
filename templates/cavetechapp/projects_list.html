@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - The Cave Tech{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1>Our Projects</h1>
+        <p>Discover the amazing creations from our community</p>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        {% if categories %}
+        <div style="margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1rem; color: #1a1a2e;">Filter by Category:</h3>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="{% url 'cavetechapp:projects_list' %}" 
+                   style="display: inline-block; padding: 0.5rem 1rem; background: {% if not selected_category %}#00d4ff{% else %}#e0e0e0{% endif %}; color: {% if not selected_category %}white{% else %}#333{% endif %}; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                    All
+                </a>
+                {% for category in categories %}
+                    <a href="?category={{ category }}" 
+                       style="display: inline-block; padding: 0.5rem 1rem; background: {% if selected_category == category %}#00d4ff{% else %}#e0e0e0{% endif %}; color: {% if selected_category == category %}white{% else %}#333{% endif %}; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                        {% if category == "3d_printing" %}3D Printing
+                        {% elif category == "woodworking" %}Woodworking
+                        {% elif category == "metalworking" %}Metalworking
+                        {% elif category == "electronics" %}Electronics
+                        {% elif category == "software" %}Software
+                        {% elif category == "art" %}Art & Design
+                        {% elif category == "robotics" %}Robotics
+                        {% else %}{{ category|title }}{% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if projects %}
+        <div class="grid">
+            {% for project in projects %}
+            <a href="{% url 'cavetechapp:project_detail' project.slug %}" style="text-decoration: none;">
+                <div class="card">
+                    {% if project.image %}
+                        <div class="card-image">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        </div>
+                    {% else %}
+                        <div class="card-image">🎨</div>
+                    {% endif %}
+                    <div class="card-content">
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        {% if project.creator %}
+                            <div class="card-meta">by {{ project.creator.name }}</div>
+                        {% endif %}
+                        <p class="card-description">{{ project.description|truncatewords:20 }}</p>
+                        <span class="badge">{{ project.get_category_display }}</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 3rem 0;">
+            <p style="font-size: 1.2rem; color: #666;">No projects found in this category.</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

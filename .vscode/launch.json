@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django - Debug in Docker",
+      "type": "python",
+      "request": "attach",
+      "pathMapping": {
+        "/app": "${workspaceFolder}"
+      },
+      "port": 5678,
+      "host": "127.0.0.1"
+    }
+  ]
+}
