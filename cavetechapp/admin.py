@@ -26,12 +26,16 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
     def has_add_permission(self, request):
-        """Prevent adding more than one SiteSettings instance."""
+        """Allow adding if no SiteSettings exists."""
         return not SiteSettings.objects.exists()
 
     def has_delete_permission(self, request, obj=None):
         """Prevent deletion of SiteSettings."""
         return False
+
+    def has_change_permission(self, request, obj=None):
+        """Allow changing SiteSettings."""
+        return True
 
 
 @admin.register(Category)
