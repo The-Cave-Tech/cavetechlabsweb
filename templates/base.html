@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
         body {
             box-sizing: border-box;
@@ -16,6 +16,7 @@
         :root {
             --font-primary: 'DM Sans', sans-serif;
             --font-display: 'Cormorant Garamond', serif;
+            --font-logo: 'Playfair Display', serif;
         }
         
         * {
@@ -148,7 +149,7 @@
                         <rect x="1" y="1" width="26" height="26" stroke="currentColor" stroke-width="1" />
                         <rect x="7" y="7" width="14" height="14" stroke="currentColor" stroke-width="1" />
                     </svg>
-                    <span class="text-sm tracking-[0.25em] uppercase font-light font-primary">The Cave Tech</span>
+                    <span class="text-lg font-light" style="font-family: var(--font-logo);">The CaveTech</span>
                 </div>
                 <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
                     <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors">Home</a>
@@ -174,7 +175,7 @@
                                 <rect x="1" y="1" width="22" height="22" stroke="currentColor" stroke-width="1" />
                                 <rect x="6" y="6" width="12" height="12" stroke="currentColor" stroke-width="1" />
                             </svg>
-                            <span class="text-sm tracking-[0.25em] uppercase font-light font-primary">The Cave Tech</span>
+                            <span class="text-lg font-light" style="font-family: var(--font-logo);">The CaveTech</span>
                         </div>
                         <p class="text-neutral-600 text-sm max-w-xs font-primary">Oslo's premier maker space showcasing innovation and craft</p>
                     </div>
