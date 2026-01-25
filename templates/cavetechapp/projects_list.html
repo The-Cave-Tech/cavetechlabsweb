@@ -3,26 +3,33 @@
 {% block title %}Projects - The Cave Tech{% endblock %}
 
 {% block content %}
-<div class="hero">
-    <div class="container">
-        <h1>Our Projects</h1>
-        <p>Discover the amazing creations from our community</p>
+<!-- Hero Section -->
+<section class="min-h-[50vh] flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
+    <div class="max-w-5xl mx-auto text-center">
+        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Creations</p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8 fade-in delay-1 font-display">Our Projects</h1>
+        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Discover the amazing creations and innovations from our community</p>
     </div>
-</div>
+</section>
 
-<main>
-    <div class="container">
+<!-- Divider -->
+<div class="divider-line"></div>
+
+<!-- Projects Section -->
+<section class="py-24 md:py-36 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+        <!-- Category Filter -->
         {% if categories %}
-        <div style="margin-bottom: 2rem;">
-            <h3 style="margin-bottom: 1rem; color: #1a1a2e;">Filter by Category:</h3>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="mb-16">
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary">Filter by Category</p>
+            <div class="flex flex-wrap gap-3">
                 <a href="{% url 'cavetechapp:projects_list' %}" 
-                   style="display: inline-block; padding: 0.5rem 1rem; background: {% if not selected_category %}#00d4ff{% else %}#e0e0e0{% endif %}; color: {% if not selected_category %}white{% else %}#333{% endif %}; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                   class="px-4 py-2 border rounded-lg text-xs tracking-[0.2em] uppercase font-primary transition-colors {% if not selected_category %}border-white text-white{% else %}border-neutral-700 text-neutral-400 hover:text-white hover:border-white{% endif %}">
                     All
                 </a>
                 {% for category in categories %}
                     <a href="?category={{ category }}" 
-                       style="display: inline-block; padding: 0.5rem 1rem; background: {% if selected_category == category %}#00d4ff{% else %}#e0e0e0{% endif %}; color: {% if selected_category == category %}white{% else %}#333{% endif %}; border-radius: 5px; text-decoration: none; font-weight: 600;">
+                       class="px-4 py-2 border rounded-lg text-xs tracking-[0.2em] uppercase font-primary transition-colors {% if selected_category == category %}border-white text-white{% else %}border-neutral-700 text-neutral-400 hover:text-white hover:border-white{% endif %}">
                         {% if category == "3d_printing" %}3D Printing
                         {% elif category == "woodworking" %}Woodworking
                         {% elif category == "metalworking" %}Metalworking
@@ -38,34 +45,45 @@
         {% endif %}
         
         {% if projects %}
-        <div class="grid">
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
             {% for project in projects %}
-            <a href="{% url 'cavetechapp:project_detail' project.slug %}" style="text-decoration: none;">
-                <div class="card">
-                    {% if project.image %}
-                        <div class="card-image">
-                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
-                        </div>
-                    {% else %}
-                        <div class="card-image">🎨</div>
-                    {% endif %}
-                    <div class="card-content">
-                        <h3 class="card-title">{{ project.title }}</h3>
-                        {% if project.creator %}
-                            <div class="card-meta">by {{ project.creator.name }}</div>
+            <a href="{% url 'cavetechapp:project_detail' project.slug %}" class="no-underline">
+                <article class="project-card group bg-neutral-950 rounded-lg overflow-hidden h-full">
+                    <div class="aspect-[3/4] relative bg-gradient-to-br from-neutral-900 to-neutral-950 flex items-center justify-center">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+                        {% else %}
+                            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" class="text-neutral-800 group-hover:text-neutral-700 transition-colors duration-700">
+                                <rect x="20" y="20" width="60" height="60" stroke="currentColor" stroke-width="1" />
+                                <circle cx="50" cy="40" r="8" fill="currentColor" />
+                                <path d="M20 80 L35 55 L50 70 L80 30" stroke="currentColor" stroke-width="1" fill="none" />
+                            </svg>
                         {% endif %}
-                        <p class="card-description">{{ project.description|truncatewords:20 }}</p>
-                        <span class="badge">{{ project.get_category_display }}</span>
+                        <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0"></div>
                     </div>
-                </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[9px] tracking-[0.3em] uppercase text-neutral-600 font-primary">{{ project.get_category_display|upper }}</span>
+                        </div>
+                        <h3 class="text-lg font-light mb-2 text-neutral-200 font-primary">{{ project.title }}</h3>
+                        {% if project.creator %}
+                            <p class="text-sm text-neutral-500 leading-relaxed font-primary mb-2">by {{ project.creator.name }}</p>
+                        {% endif %}
+                        <p class="text-sm text-neutral-500 leading-relaxed font-primary">{{ project.description|truncatewords:20 }}</p>
+                    </div>
+                </article>
             </a>
             {% endfor %}
         </div>
         {% else %}
-        <div style="text-align: center; padding: 3rem 0;">
-            <p style="font-size: 1.2rem; color: #666;">No projects found in this category.</p>
+        <div class="text-center py-16">
+            <p class="text-lg text-neutral-400 font-primary">No projects found in this category.</p>
         </div>
         {% endif %}
     </div>
-</main>
+</section>
+
+<!-- Divider -->
+<div class="divider-line"></div>
 {% endblock %}

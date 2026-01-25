@@ -1,267 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}The Cave Tech{% endblock %}</title>
-    <style>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}The Cave Tech — Private Research Studio{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --font-primary: 'DM Sans', sans-serif;
+            --font-display: 'Cormorant Garamond', serif;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tagline {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-        }
-        
-        nav {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 2rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            color: #00d4ff;
-        }
-        
-        main {
-            padding: 3rem 0;
-        }
-        
-        .section {
-            margin-bottom: 4rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            border-bottom: 3px solid #00d4ff;
-            padding-bottom: 1rem;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-        
-        .card-image {
+        html, body {
+            height: 100%;
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
         }
         
-        .card-image img {
+        .main-wrapper {
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        .font-display {
+            font-family: var(--font-display);
+        }
+        
+        .font-primary {
+            font-family: var(--font-primary);
+        }
+        
+        /* Grain texture */
+        .grain-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            pointer-events: none;
+            opacity: 0.025;
+            z-index: 100;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.5'/%3E%3C/svg%3E");
         }
         
-        .card-content {
-            padding: 1.5rem;
+        /* Divider line */
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
         }
         
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
+        /* Card hover effects */
+        .project-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
         }
         
-        .card-meta {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.1);
         }
         
-        .card-description {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .project-card:hover .card-overlay {
+            opacity: 1;
         }
         
-        .badge {
-            display: inline-block;
-            background: #00d4ff;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 1rem;
+        .card-overlay {
+            transition: opacity 0.6s ease;
         }
         
-        .card a {
-            color: #00d4ff;
-            text-decoration: none;
-            font-weight: 600;
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .card a:hover {
-            text-decoration: underline;
+        .fade-in {
+            animation: fadeInUp 1.2s ease-out forwards;
         }
         
-        footer {
-            background: #1a1a2e;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+        .delay-1 { animation-delay: 0.15s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.45s; opacity: 0; }
+        .delay-4 { animation-delay: 0.6s; opacity: 0; }
+        .delay-5 { animation-delay: 0.75s; opacity: 0; }
+        
+        /* Status indicator */
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
         }
         
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
+        .status-pulse {
+            animation: statusPulse 3s ease-in-out infinite;
         }
         
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        /* Scroll indicator */
+        @keyframes scrollHint {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0.4; }
+            100% { transform: translateY(0); opacity: 1; }
         }
         
-        .hero p {
-            font-size: 1.2rem;
-            color: #e0e0e0;
+        .scroll-hint {
+            animation: scrollHint 2.5s ease-in-out infinite;
         }
         
-        .button {
-            display: inline-block;
-            background: #00d4ff;
-            color: #1a1a2e;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-            margin-top: 1rem;
-        }
-        
-        .button:hover {
-            background: #00a8cc;
-            color: white;
-        }
-        
-        .breadcrumb {
-            margin-bottom: 2rem;
-            color: #666;
-        }
-        
-        .breadcrumb a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .detail-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 3rem 0;
-            margin-bottom: 3rem;
-        }
-        
-        .detail-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .detail-image {
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-            margin: 2rem 0;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
+        /* Grid pattern background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">🏭 The Cave Tech</div>
-            <div class="tagline">Oslo's Premier Maker Space</div>
-            <nav>
-                <a href="{% url 'cavetechapp:index' %}">Home</a>
-                <a href="{% url 'cavetechapp:people_list' %}">People</a>
-                <a href="{% url 'cavetechapp:projects_list' %}">Projects</a>
-                <a href="/admin/">Admin</a>
+<body class="h-full w-full">
+    <div class="main-wrapper bg-black text-white" id="main-container">
+        <!-- Grain overlay -->
+        <div class="grain-texture"></div>
+        
+        <!-- Header Navigation -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
+            <nav class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" class="text-white" id="logo-icon">
+                        <rect x="1" y="1" width="26" height="26" stroke="currentColor" stroke-width="1" />
+                        <rect x="7" y="7" width="14" height="14" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <span class="text-sm tracking-[0.25em] uppercase font-light font-primary">The Cave Tech</span>
+                </div>
+                <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
+                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors">Home</a>
+                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors">People</a>
+                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors">Projects</a>
+                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors">Admin</a>
+                </div>
             </nav>
-        </div>
-    </header>
-    
-    {% block content %}{% endblock %}
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 The Cave Tech Labs. All rights reserved.</p>
-            <p>Oslo, Norway 🇳🇴 | www.cavetechlabs.com</p>
-        </div>
-    </footer>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <!-- Divider -->
+        <div class="divider-line"></div>
+        
+        <!-- Footer -->
+        <footer class="py-16 md:py-20 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white">
+                                <rect x="1" y="1" width="22" height="22" stroke="currentColor" stroke-width="1" />
+                                <rect x="6" y="6" width="12" height="12" stroke="currentColor" stroke-width="1" />
+                            </svg>
+                            <span class="text-sm tracking-[0.25em] uppercase font-light font-primary">The Cave Tech</span>
+                        </div>
+                        <p class="text-neutral-600 text-sm max-w-xs font-primary">Oslo's premier maker space showcasing innovation and craft</p>
+                    </div>
+                    <div class="flex items-center gap-6 text-neutral-600 text-xs tracking-[0.25em] uppercase font-primary">
+                        <span>Oslo</span>
+                        <span class="w-1 h-1 bg-neutral-800 rounded-full"></span>
+                        <span>2026</span>
+                        <span class="w-1 h-1 bg-neutral-800 rounded-full"></span>
+                        <span>Maker Space</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

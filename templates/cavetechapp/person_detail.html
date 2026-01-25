@@ -3,61 +3,72 @@
 {% block title %}{{ person.name }} - The Cave Tech{% endblock %}
 
 {% block content %}
-<div class="detail-header">
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="{% url 'cavetechapp:index' %}">Home</a> / 
-            <a href="{% url 'cavetechapp:people_list' %}">Members</a> / 
-            {{ person.name }}
-        </div>
-        <h1>{{ person.name }}</h1>
+<!-- Hero Section -->
+<section class="min-h-[50vh] flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
+    <div class="max-w-5xl mx-auto text-center">
+        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Member Profile</p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8 fade-in delay-1 font-display">{{ person.name }}</h1>
         {% if person.title %}
-            <p style="font-size: 1.2rem; margin-top: 0.5rem;">{{ person.title }}</p>
+            <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">{{ person.title }}</p>
         {% endif %}
     </div>
-</div>
+</section>
 
-<main>
-    <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+<!-- Divider -->
+<div class="divider-line"></div>
+
+<!-- Detail Section -->
+<section class="py-24 md:py-36 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+            <!-- Image Column -->
             <div>
                 {% if person.image %}
-                    <div class="detail-image">
-                        <img src="{{ person.image.url }}" alt="{{ person.name }}">
-                    </div>
+                    <img src="{{ person.image.url }}" alt="{{ person.name }}" class="w-full aspect-[3/4] object-cover rounded-lg">
                 {% else %}
-                    <div class="detail-image" style="font-size: 5rem;">👤</div>
+                    <div class="w-full aspect-[3/4] bg-gradient-to-br from-neutral-900 to-neutral-950 rounded-lg flex items-center justify-center">
+                        <svg width="150" height="150" viewBox="0 0 100 100" fill="none" class="text-neutral-800">
+                            <circle cx="50" cy="35" r="12" stroke="currentColor" stroke-width="1" />
+                            <path d="M30 55 Q30 50 50 50 Q70 50 70 55 L70 80 Q70 85 65 85 L35 85 Q30 85 30 80 Z" stroke="currentColor" stroke-width="1" fill="none" />
+                        </svg>
+                    </div>
                 {% endif %}
             </div>
+            
+            <!-- Content Column -->
             <div>
                 {% if person.bio %}
-                    <h2 style="margin-bottom: 1rem; color: #1a1a2e;">About</h2>
-                    <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">{{ person.bio }}</p>
+                    <div class="border-l border-neutral-800 pl-8 mb-12">
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">About</p>
+                        <p class="text-xl md:text-2xl font-light text-neutral-300 leading-relaxed font-display">{{ person.bio }}</p>
+                    </div>
                 {% endif %}
                 
                 {% if person.email %}
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="color: #1a1a2e; margin-bottom: 0.5rem;">Contact</h3>
-                        <p><a href="mailto:{{ person.email }}" style="color: #00d4ff; text-decoration: none;">{{ person.email }}</a></p>
+                    <div class="border-l border-neutral-800 pl-8 mb-12">
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Contact</p>
+                        <a href="mailto:{{ person.email }}" class="text-neutral-200 hover:text-white transition-colors font-primary">{{ person.email }}</a>
                     </div>
                 {% endif %}
                 
                 {% if projects %}
-                    <div>
-                        <h3 style="color: #1a1a2e; margin-bottom: 1rem;">Projects</h3>
-                        <ul style="list-style: none;">
+                    <div class="border-l border-neutral-800 pl-8">
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-6 font-primary">Projects</p>
+                        <div class="space-y-4">
                             {% for project in projects %}
-                                <li style="margin-bottom: 0.5rem;">
-                                    <a href="{% url 'cavetechapp:project_detail' project.slug %}" style="color: #00d4ff; text-decoration: none; font-weight: 600;">
-                                        → {{ project.title }}
-                                    </a>
-                                </li>
+                                <a href="{% url 'cavetechapp:project_detail' project.slug %}" class="block hover:text-white transition-colors">
+                                    <h3 class="text-neutral-200 font-medium font-primary hover:text-white">{{ project.title }}</h3>
+                                    <p class="text-sm text-neutral-500 font-primary">{{ project.get_category_display }}</p>
+                                </a>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
                 {% endif %}
             </div>
         </div>
     </div>
-</main>
+</section>
+
+<!-- Divider -->
+<div class="divider-line"></div>
 {% endblock %}
