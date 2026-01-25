@@ -11,12 +11,12 @@
         <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.</p>
     </div>
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 scroll-hint">
+    <button onclick="document.querySelector('#featured-projects').scrollIntoView({behavior: 'smooth'})" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 scroll-hint cursor-pointer hover:opacity-100 opacity-80 transition-opacity bg-none border-none p-0">
         <div class="w-5 h-8 border border-neutral-700 rounded-full flex items-start justify-center pt-1.5">
             <div class="w-1 h-2 bg-neutral-600 rounded-full"></div>
         </div>
         <span class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-primary">Explore</span>
-    </div>
+    </button>
 </section>
 
 <!-- Divider -->
@@ -24,7 +24,7 @@
 
 <!-- Featured Projects Section -->
 {% if featured_projects %}
-<section class="py-24 md:py-36 px-6 md:px-12" id="projects-section">
+<section class="py-24 md:py-36 px-6 md:px-12" id="featured-projects">
     <div class="max-w-6xl mx-auto">
         <!-- Section Header -->
         <div class="mb-16">
