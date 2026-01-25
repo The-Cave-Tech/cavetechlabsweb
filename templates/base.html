@@ -159,6 +159,7 @@
                 </div>
                 <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
                     <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors">Home</a>
+                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors">About</a>
                     <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors">People</a>
                     <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors">Projects</a>
                     <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors">Admin</a>
@@ -174,18 +175,53 @@
         <!-- Footer -->
         <footer class="py-16 md:py-20 px-6 md:px-12">
             <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                    <!-- Logo & Description -->
                     <div>
                         <div class="flex items-center gap-2 mb-4">
                             <span class="text-3xl font-light" style="font-family: var(--font-logo);">The CaveTech</span>
                         </div>
                         <p class="text-neutral-600 text-sm max-w-xs font-primary">Oslo's premier maker space showcasing innovation and craft</p>
                     </div>
-                    <div class="flex items-center gap-6 text-neutral-600 text-xs tracking-[0.25em] uppercase font-primary">
+                    
+                    <!-- Contact Information -->
+                    <div>
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Contact</p>
+                        <div class="space-y-2 text-sm font-primary">
+                            {% if settings.email %}
+                                <p><a href="mailto:{{ settings.email }}" class="text-neutral-400 hover:text-white transition-colors">{{ settings.email }}</a></p>
+                            {% endif %}
+                            {% if settings.phone %}
+                                <p><a href="tel:{{ settings.phone }}" class="text-neutral-400 hover:text-white transition-colors">{{ settings.phone }}</a></p>
+                            {% endif %}
+                            {% if settings.address %}
+                                <p class="text-neutral-400">{{ settings.address }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div>
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Follow</p>
+                        <div class="flex gap-4">
+                            {% if settings.instagram %}
+                                <a href="{{ settings.instagram }}" target="_blank" class="text-neutral-400 hover:text-white transition-colors font-primary text-sm">Instagram</a>
+                            {% endif %}
+                            {% if settings.email %}
+                                <a href="mailto:{{ settings.email }}" class="text-neutral-400 hover:text-white transition-colors font-primary text-sm">Email</a>
+                            {% endif %}
+                            <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors font-primary text-sm">About</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Footer -->
+                <div class="border-t border-neutral-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-600 text-xs tracking-[0.25em] uppercase font-primary">
                         <span>Oslo</span>
-                        <span class="w-1 h-1 bg-neutral-800 rounded-full"></span>
+                        <span class="w-1 h-1 bg-neutral-800 rounded-full hidden md:block"></span>
                         <span>2026</span>
-                        <span class="w-1 h-1 bg-neutral-800 rounded-full"></span>
+                        <span class="w-1 h-1 bg-neutral-800 rounded-full hidden md:block"></span>
                         <span>Maker Space</span>
                     </div>
                 </div>

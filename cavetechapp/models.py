@@ -5,6 +5,42 @@ from django.db import models
 from django.utils.text import slugify
 
 
+class SiteSettings(models.Model):
+    """Model for storing site-wide settings like About Us, Contact Info, etc."""
+    about_title = models.CharField(max_length=200, default="About The Cave Tech")
+    about_content = models.TextField(blank=True, help_text="Main about us content")
+    history = models.TextField(blank=True, help_text="History section content")
+    address = models.TextField(blank=True, help_text="Physical address")
+    email = models.EmailField(blank=True, help_text="Contact email address")
+    instagram = models.URLField(blank=True, help_text="Instagram profile URL")
+    phone = models.CharField(max_length=20, blank=True, help_text="Contact phone number")
+    image = models.ImageField(upload_to='about/', blank=True, null=True, help_text="Hero image for About Us page")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Site Settings"
+        verbose_name_plural = "Site Settings"
+
+    def __str__(self):
+        return "Site Settings"
+
+    def save(self, *args, **kwargs):
+        """Ensure only one SiteSettings instance exists."""
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        """Prevent deletion of SiteSettings."""
+        pass
+
+    @classmethod
+    def get_settings(cls):
+        """Get or create the singleton SiteSettings instance."""
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+
+
 class Category(models.Model):
     """Model representing a project category."""
     name = models.CharField(max_length=200, unique=True)

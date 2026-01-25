@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - The Cave Tech{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="min-h-[50vh] flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
+    <div class="max-w-5xl mx-auto text-center">
+        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Our Story</p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8 fade-in delay-1 font-display">{{ settings.about_title }}</h1>
+        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Discover who we are and what drives our mission</p>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line"></div>
+
+<!-- About Content -->
+<section class="py-24 md:py-36 px-6 md:px-12">
+    <div class="max-w-4xl mx-auto">
+        <!-- About Us Section -->
+        {% if settings.about_content %}
+        <div class="mb-24">
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary">About Us</p>
+            <div class="prose prose-invert max-w-none">
+                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line">{{ settings.about_content }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- History Section -->
+        {% if settings.history %}
+        <div class="mb-24">
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary">Our History</p>
+            <div class="prose prose-invert max-w-none">
+                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line">{{ settings.history }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Image Section -->
+        {% if settings.image %}
+        <div class="mb-24">
+            <div class="aspect-video bg-neutral-900 rounded-lg overflow-hidden">
+                <img src="{{ settings.image.url }}" alt="The Cave Tech" class="w-full h-full object-cover">
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Location & Contact -->
+        <div class="border-t border-neutral-800 pt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Address -->
+                {% if settings.address %}
+                <div>
+                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary">Location</p>
+                    <p class="text-neutral-300 text-base leading-relaxed font-primary">{{ settings.address }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Contact Info -->
+                <div>
+                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary">Get In Touch</p>
+                    <div class="space-y-3">
+                        {% if settings.email %}
+                        <p>
+                            <a href="mailto:{{ settings.email }}" class="text-neutral-300 hover:text-white transition-colors font-primary">
+                                {{ settings.email }}
+                            </a>
+                        </p>
+                        {% endif %}
+                        {% if settings.phone %}
+                        <p>
+                            <a href="tel:{{ settings.phone }}" class="text-neutral-300 hover:text-white transition-colors font-primary">
+                                {{ settings.phone }}
+                            </a>
+                        </p>
+                        {% endif %}
+                        {% if settings.instagram %}
+                        <p>
+                            <a href="{{ settings.instagram }}" target="_blank" class="text-neutral-300 hover:text-white transition-colors font-primary">
+                                Follow on Instagram
+                            </a>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

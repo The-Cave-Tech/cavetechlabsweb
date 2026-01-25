@@ -3,7 +3,7 @@ Views for the Cave Tech Labs website.
 """
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Person, Project, Category
+from .models import Person, Project, Category, SiteSettings
 
 
 class IndexView(View):
@@ -17,6 +17,15 @@ class IndexView(View):
             'people': people,
         }
         return render(request, 'cavetechapp/index.html', context)
+
+
+class AboutView(View):
+    """About Us page view."""
+
+    def get(self, request):
+        settings = SiteSettings.get_settings()
+        context = {'settings': settings}
+        return render(request, 'cavetechapp/about.html', context)
 
 
 class PeopleListView(View):
