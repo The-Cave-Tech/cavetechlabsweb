@@ -154,9 +154,9 @@
         <!-- Header Navigation -->
         <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
             <nav class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl font-light" style="font-family: var(--font-logo);">The CaveTech</span>
-                </div>
+                <a href="{% url 'cavetechapp:index' %}" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <span class="text-3xl font-light" style="font-family: var(--font-logo);">CaveTech</span>
+                </a>
                 <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
                     <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors">Home</a>
                     <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors">About</a>
@@ -179,7 +179,7 @@
                     <!-- Logo & Description -->
                     <div>
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="text-3xl font-light" style="font-family: var(--font-logo);">The CaveTech</span>
+                            <span class="text-3xl font-light" style="font-family: var(--font-logo);">CaveTech</span>
                         </div>
                         <p class="text-neutral-600 text-sm max-w-xs font-primary">Oslo's premier maker space showcasing innovation and craft</p>
                     </div>

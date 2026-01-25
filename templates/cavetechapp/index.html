@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}The Cave Tech - Home{% endblock %}
+{% block title %}CaveTech - Home{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
     <div class="max-w-5xl mx-auto text-center">
         <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Craft · Innovation · Collaboration</p>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-8 fade-in delay-1 font-display">Welcome to<br>The Cave Tech</h1>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-8 fade-in delay-1 font-display">Welcome to<br>CaveTech</h1>
         <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.</p>
     </div>
     <!-- Scroll indicator -->
@@ -108,7 +108,7 @@
                         {% if person.bio %}
                             <p class="text-sm text-neutral-500 leading-relaxed font-primary">{{ person.bio|truncatewords:15 }}</p>
                         {% else %}
-                            <p class="text-sm text-neutral-500 leading-relaxed font-primary italic">Member of The Cave Tech</p>
+                            <p class="text-sm text-neutral-500 leading-relaxed font-primary italic">Member of CaveTech</p>
                         {% endif %}
                     </div>
                 </article>
@@ -126,7 +126,7 @@
 <section class="py-24 md:py-36 px-6 md:px-12">
     <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight font-display">Join the Community</h2>
-        <p class="text-neutral-400 leading-relaxed max-w-2xl mx-auto mb-12 font-primary">Discover more about our members, their projects, and explore what we're building together at The Cave Tech.</p>
+        <p class="text-neutral-400 leading-relaxed max-w-2xl mx-auto mb-12 font-primary">Discover more about our members, their projects, and explore what we're building together at CaveTech.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a href="{% url 'cavetechapp:people_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase">View All Members</a>
             <a href="{% url 'cavetechapp:projects_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase">Browse Projects</a>

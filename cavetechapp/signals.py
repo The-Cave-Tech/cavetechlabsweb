@@ -11,8 +11,8 @@ def create_site_settings(sender, **kwargs):
     """Create SiteSettings instance after migrations."""
     if sender.name == 'cavetechapp':
         SiteSettings.objects.get_or_create(pk=1, defaults={
-            'about_title': 'About The Cave Tech',
-            'about_content': 'Welcome to The Cave Tech - Oslo\'s premier maker space.',
+            'about_title': 'About CaveTech',
+            'about_content': 'Welcome to CaveTech - Oslo\'s premier maker space.',
             'history': '',
             'address': 'Oslo, Norway',
             'email': 'contact@cavetechlabs.com',
