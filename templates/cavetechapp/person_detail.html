@@ -58,7 +58,7 @@
                             {% for project in projects %}
                                 <a href="{% url 'cavetechapp:project_detail' project.slug %}" class="block hover:text-white transition-colors">
                                     <h3 class="text-neutral-200 font-medium font-primary hover:text-white">{{ project.title }}</h3>
-                                    <p class="text-sm text-neutral-500 font-primary">{{ project.get_category_display }}</p>
+                                    <p class="text-sm text-neutral-500 font-primary">{{ project.category.name }}</p>
                                 </a>
                             {% endfor %}
                         </div>

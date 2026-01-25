@@ -3,7 +3,7 @@ Views for the Cave Tech Labs website.
 """
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Person, Project
+from .models import Person, Project, Category
 
 
 class IndexView(View):
@@ -43,14 +43,14 @@ class ProjectsListView(View):
 
     def get(self, request):
         projects = Project.objects.all()
-        category = request.GET.get('category')
-        if category:
-            projects = projects.filter(category=category)
-        categories = Project.objects.values_list('category', flat=True).distinct()
+        category_slug = request.GET.get('category')
+        if category_slug:
+            projects = projects.filter(category__slug=category_slug)
+        categories = Category.objects.all()
         context = {
             'projects': projects,
             'categories': categories,
-            'selected_category': category,
+            'selected_category': category_slug,
         }
         return render(request, 'cavetechapp/projects_list.html', context)
 

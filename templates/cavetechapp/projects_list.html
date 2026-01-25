@@ -28,16 +28,9 @@
                     All
                 </a>
                 {% for category in categories %}
-                    <a href="?category={{ category }}" 
-                       class="px-4 py-2 border rounded-lg text-xs tracking-[0.2em] uppercase font-primary transition-colors {% if selected_category == category %}border-white text-white{% else %}border-neutral-700 text-neutral-400 hover:text-white hover:border-white{% endif %}">
-                        {% if category == "3d_printing" %}3D Printing
-                        {% elif category == "woodworking" %}Woodworking
-                        {% elif category == "metalworking" %}Metalworking
-                        {% elif category == "electronics" %}Electronics
-                        {% elif category == "software" %}Software
-                        {% elif category == "art" %}Art & Design
-                        {% elif category == "robotics" %}Robotics
-                        {% else %}{{ category|title }}{% endif %}
+                    <a href="?category={{ category.slug }}" 
+                       class="px-4 py-2 border rounded-lg text-xs tracking-[0.2em] uppercase font-primary transition-colors {% if selected_category == category.slug %}border-white text-white{% else %}border-neutral-700 text-neutral-400 hover:text-white hover:border-white{% endif %}">
+                        {{ category.name }}
                     </a>
                 {% endfor %}
             </div>
@@ -64,7 +57,7 @@
                     </div>
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-3">
-                            <span class="text-[9px] tracking-[0.3em] uppercase text-neutral-600 font-primary">{{ project.get_category_display|upper }}</span>
+                            <span class="text-[9px] tracking-[0.3em] uppercase text-neutral-600 font-primary">{{ project.category.name|upper }}</span>
                         </div>
                         <h3 class="text-lg font-light mb-2 text-neutral-200 font-primary">{{ project.title }}</h3>
                         {% if project.creator %}
