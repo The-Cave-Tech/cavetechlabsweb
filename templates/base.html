@@ -163,6 +163,34 @@
                     <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors">People</a>
                     <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors">Projects</a>
                     <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors">Admin</a>
+                    
+                    <!-- Language Switcher Dropdown -->
+                    <div class="relative group">
+                        <button class="text-neutral-400 hover:text-white transition-colors flex items-center gap-1" title="Switch Language">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:text-white transition-colors">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                <path d="M2 12h20"/>
+                            </svg>
+                            <span class="hidden md:inline text-[10px]">Language</span>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute right-0 mt-0 w-40 bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-10">
+                            <button onclick="setLanguage('nb')" class="w-full px-4 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center gap-2">
+                                <span class="text-lg">🇳🇴</span>
+                                <span>Norsk (Norwegian)</span>
+                            </button>
+                            <button onclick="setLanguage('en')" class="w-full px-4 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center gap-2">
+                                <span class="text-lg">🇬🇧</span>
+                                <span>English</span>
+                            </button>
+                            <button onclick="setLanguage('zh-hans')" class="w-full px-4 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center gap-2">
+                                <span class="text-lg">🇨🇳</span>
+                                <span>中文 (Chinese)</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -228,5 +256,82 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Language Switcher
+        let currentLanguage = localStorage.getItem('language') || 'nb';
+        let translations = {};
+
+        // Load translations on page load
+        async function loadTranslations() {
+            try {
+                const response = await fetch(`/static/i18n/${currentLanguage}.json`);
+                translations = await response.json();
+                applyTranslations();
+            } catch (error) {
+                console.error('Failed to load translations:', error);
+            }
+        }
+
+        // Set language and reload translations
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            loadTranslations();
+        }
+
+        // Apply translations to DOM
+        function applyTranslations() {
+            // Translate all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = translations;
+                
+                for (let k of keys) {
+                    if (value && typeof value === 'object' && k in value) {
+                        value = value[k];
+                    } else {
+                        value = null;
+                        break;
+                    }
+                }
+                
+                if (value) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = value;
+                    } else {
+                        element.textContent = value;
+                    }
+                }
+            });
+
+            // Translate all elements with data-i18n-html attribute
+            document.querySelectorAll('[data-i18n-html]').forEach(element => {
+                const key = element.getAttribute('data-i18n-html');
+                const keys = key.split('.');
+                let value = translations;
+                
+                for (let k of keys) {
+                    if (value && typeof value === 'object' && k in value) {
+                        value = value[k];
+                    } else {
+                        value = null;
+                        break;
+                    }
+                }
+                
+                if (value) {
+                    element.innerHTML = value;
+                }
+            });
+
+            // Update document language
+            document.documentElement.lang = currentLanguage;
+        }
+
+        // Load translations on page load
+        document.addEventListener('DOMContentLoaded', loadTranslations);
+    </script>
 </body>
 </html>
