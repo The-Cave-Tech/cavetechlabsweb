@@ -38,14 +38,14 @@
             <div>
                 <!-- Description -->
                 <div class="border-l border-neutral-800 pl-8 mb-12">
-                    <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">About this Project</p>
+                    <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary" data-i18n="project.about_project">About this Project</p>
                     <p class="text-lg text-neutral-300 leading-relaxed font-primary">{{ project.description }}</p>
                 </div>
                 
                 <!-- Creator Info -->
                 {% if project.creator %}
                     <div class="border-l border-neutral-800 pl-8 mb-12">
-                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Created by</p>
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary" data-i18n="project.created_by">Created by</p>
                         <a href="{% url 'cavetechapp:person_detail' project.creator.pk %}" class="hover:text-white transition-colors">
                             <h3 class="text-neutral-200 font-medium font-primary hover:text-white">{{ project.creator.name }}</h3>
                             {% if project.creator.title %}
@@ -83,7 +83,7 @@
     <div class="max-w-6xl mx-auto">
         <!-- Section Header -->
         <div class="mb-16">
-            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary">Related Work</p>
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary" data-i18n="project.related_projects">Related Work</p>
             <h2 class="text-3xl md:text-5xl font-light font-display">More Projects</h2>
         </div>
         <!-- Projects Grid -->
@@ -109,7 +109,7 @@
                         </div>
                         <h3 class="text-lg font-light mb-2 text-neutral-200 font-primary">{{ related.title }}</h3>
                         {% if related.creator %}
-                            <p class="text-sm text-neutral-500 leading-relaxed font-primary mb-2">by {{ related.creator.name }}</p>
+                            <p class="text-sm text-neutral-500 leading-relaxed font-primary mb-2"><span data-i18n="projects.by">by</span> {{ related.creator.name }}</p>
                         {% endif %}
                         <p class="text-sm text-neutral-500 leading-relaxed font-primary">{{ related.description|truncatewords:15 }}</p>
                     </div>

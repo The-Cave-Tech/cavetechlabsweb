@@ -6,9 +6,9 @@
 <!-- Hero Section -->
 <section class="min-h-[50vh] flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
     <div class="max-w-5xl mx-auto text-center">
-        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Our Story</p>
+        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary" data-i18n="about.section_label">Our Story</p>
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8 fade-in delay-1 font-display">{{ settings.about_title }}</h1>
-        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Discover who we are and what drives our mission</p>
+        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary" data-i18n="about.subheading">Discover who we are and what drives our mission</p>
     </div>
 </section>
 
@@ -21,7 +21,7 @@
         <!-- About Us Section -->
         {% if settings.about_content %}
         <div class="mb-24">
-            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary">About Us</p>
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary" data-i18n="about.about_us">About Us</p>
             <div class="prose prose-invert max-w-none">
                 <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line">{{ settings.about_content }}</p>
             </div>
@@ -31,7 +31,7 @@
         <!-- History Section -->
         {% if settings.history %}
         <div class="mb-24">
-            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary">Our History</p>
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary" data-i18n="about.history">Our History</p>
             <div class="prose prose-invert max-w-none">
                 <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line">{{ settings.history }}</p>
             </div>
@@ -53,14 +53,14 @@
                 <!-- Address -->
                 {% if settings.address %}
                 <div>
-                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary">Location</p>
+                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary" data-i18n="about.location">Location</p>
                     <p class="text-neutral-300 text-base leading-relaxed font-primary">{{ settings.address }}</p>
                 </div>
                 {% endif %}
 
                 <!-- Contact Info -->
                 <div>
-                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary">Get In Touch</p>
+                    <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-4 font-primary" data-i18n="about.get_in_touch">Get In Touch</p>
                     <div class="space-y-3">
                         {% if settings.email %}
                         <p>
