@@ -6,16 +6,16 @@
 <!-- Hero Section -->
 <section class="min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-16 relative grid-bg">
     <div class="max-w-5xl mx-auto text-center">
-        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary">Craft · Innovation · Collaboration</p>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-8 fade-in delay-1 font-display">Welcome to<br>CaveTech</h1>
-        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary">Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.</p>
+        <p class="text-neutral-500 text-xs tracking-[0.35em] uppercase mb-10 fade-in font-primary" data-i18n="homepage.tagline">Craft · Innovation · Collaboration</p>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-8 fade-in delay-1 font-display" data-i18n-html="homepage.title">Welcome to<br>CaveTech</h1>
+        <p class="text-neutral-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed fade-in delay-2 font-primary" data-i18n="homepage.description">Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.</p>
     </div>
     <!-- Scroll indicator -->
     <button onclick="document.querySelector('#featured-projects').scrollIntoView({behavior: 'smooth'})" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 scroll-hint cursor-pointer hover:opacity-100 opacity-80 transition-opacity bg-none border-none p-0">
         <div class="w-5 h-8 border border-neutral-700 rounded-full flex items-start justify-center pt-1.5">
             <div class="w-1 h-2 bg-neutral-600 rounded-full"></div>
         </div>
-        <span class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-primary">Explore</span>
+        <span class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-primary" data-i18n="homepage.explore">Explore</span>
     </button>
 </section>
 
@@ -28,10 +28,10 @@
     <div class="max-w-6xl mx-auto">
         <!-- Section Header -->
         <div class="mb-16">
-            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary">Featured Work</p>
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary" data-i18n="homepage.featured_work">Featured Work</p>
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                <h2 class="text-3xl md:text-5xl font-light font-display">Recent Projects</h2>
-                <p class="text-neutral-500 text-sm font-primary">Explore innovation and craft</p>
+                <h2 class="text-3xl md:text-5xl font-light font-display" data-i18n="homepage.recent_projects">Recent Projects</h2>
+                <p class="text-neutral-500 text-sm font-primary" data-i18n="homepage.explore_innovation">Explore innovation and craft</p>
             </div>
         </div>
         <!-- Projects Grid -->
@@ -78,10 +78,10 @@
     <div class="max-w-6xl mx-auto">
         <!-- Section Header -->
         <div class="mb-16">
-            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary">Community</p>
+            <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-6 font-primary" data-i18n="homepage.community">Community</p>
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                <h2 class="text-3xl md:text-5xl font-light font-display">Our Members</h2>
-                <p class="text-neutral-500 text-sm font-primary">Talented creators and innovators</p>
+                <h2 class="text-3xl md:text-5xl font-light font-display" data-i18n="homepage.our_members">Our Members</h2>
+                <p class="text-neutral-500 text-sm font-primary" data-i18n="homepage.talented_creators">Talented creators and innovators</p>
             </div>
         </div>
         <!-- Members Grid -->
@@ -108,7 +108,7 @@
                         {% if person.bio %}
                             <p class="text-sm text-neutral-500 leading-relaxed font-primary">{{ person.bio|truncatewords:15 }}</p>
                         {% else %}
-                            <p class="text-sm text-neutral-500 leading-relaxed font-primary italic">Member of CaveTech</p>
+                            <p class="text-sm text-neutral-500 leading-relaxed font-primary italic" data-i18n="homepage.member_of_cavetech">Member of CaveTech</p>
                         {% endif %}
                     </div>
                 </article>
@@ -125,11 +125,11 @@
 <!-- CTA Section -->
 <section class="py-24 md:py-36 px-6 md:px-12">
     <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight font-display">Join the Community</h2>
-        <p class="text-neutral-400 leading-relaxed max-w-2xl mx-auto mb-12 font-primary">Discover more about our members, their projects, and explore what we're building together at CaveTech.</p>
+        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight font-display" data-i18n="homepage.join_community">Join the Community</h2>
+        <p class="text-neutral-400 leading-relaxed max-w-2xl mx-auto mb-12 font-primary" data-i18n="homepage.discover_more">Discover more about our members, their projects, and explore what we're building together at CaveTech.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="{% url 'cavetechapp:people_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase">View All Members</a>
-            <a href="{% url 'cavetechapp:projects_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase">Browse Projects</a>
+            <a href="{% url 'cavetechapp:people_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase" data-i18n="homepage.view_members">View All Members</a>
+            <a href="{% url 'cavetechapp:projects_list' %}" class="px-8 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:text-white hover:border-white transition-colors font-primary text-sm tracking-[0.2em] uppercase" data-i18n="homepage.browse_projects">Browse Projects</a>
         </div>
     </div>
 </section>

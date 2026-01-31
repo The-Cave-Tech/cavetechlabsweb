@@ -158,11 +158,11 @@
                     <span class="text-3xl font-light" style="font-family: var(--font-logo);">CaveTech</span>
                 </a>
                 <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
-                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors">Home</a>
-                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors">About</a>
-                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors">People</a>
-                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors">Projects</a>
-                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors">Admin</a>
+                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.home">Home</a>
+                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.about">About</a>
+                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.people">People</a>
+                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.projects">Projects</a>
+                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.admin">Admin</a>
                     
                     <!-- Language Switcher Dropdown -->
                     <div class="relative group">
@@ -209,12 +209,12 @@
                         <div class="flex items-center gap-2 mb-4">
                             <span class="text-3xl font-light" style="font-family: var(--font-logo);">CaveTech</span>
                         </div>
-                        <p class="text-neutral-600 text-sm max-w-xs font-primary">Oslo's premier maker space showcasing innovation and craft</p>
+                        <p class="text-neutral-600 text-sm max-w-xs font-primary" data-i18n="footer.description">Oslo's premier maker space showcasing innovation and craft</p>
                     </div>
                     
                     <!-- Contact Information -->
                     <div>
-                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Contact</p>
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary" data-i18n="footer.contact">Contact</p>
                         <div class="space-y-2 text-sm font-primary">
                             {% if settings.email %}
                                 <p><a href="mailto:{{ settings.email }}" class="text-neutral-400 hover:text-white transition-colors">{{ settings.email }}</a></p>
@@ -230,7 +230,7 @@
                     
                     <!-- Social Links -->
                     <div>
-                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary">Follow</p>
+                        <p class="text-neutral-600 text-[10px] tracking-[0.3em] uppercase mb-4 font-primary" data-i18n="footer.follow">Follow</p>
                         <div class="flex gap-4">
                             {% if settings.instagram %}
                                 <a href="{{ settings.instagram }}" target="_blank" class="text-neutral-400 hover:text-white transition-colors font-primary text-sm">Instagram</a>
@@ -246,11 +246,11 @@
                 <!-- Bottom Footer -->
                 <div class="border-t border-neutral-800 pt-8">
                     <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-600 text-xs tracking-[0.25em] uppercase font-primary">
-                        <span>Oslo</span>
+                        <span data-i18n="footer.location">Oslo</span>
                         <span class="w-1 h-1 bg-neutral-800 rounded-full hidden md:block"></span>
-                        <span>2026</span>
+                        <span data-i18n="footer.year">2026</span>
                         <span class="w-1 h-1 bg-neutral-800 rounded-full hidden md:block"></span>
-                        <span>Maker Space</span>
+                        <span data-i18n="footer.type">Maker Space</span>
                     </div>
                 </div>
             </div>
@@ -258,26 +258,23 @@
     </div>
 
     <script>
-        // Language Switcher
-        let currentLanguage = localStorage.getItem('language') || 'nb';
-        let translations = {};
+        // Embedded translations
+        const allTranslations = {
+            nb: {"nav":{"home":"Hjem","about":"Om","people":"Medlemmer","projects":"Prosjekter","admin":"Admin"},"footer":{"contact":"Kontakt","follow":"Følg","description":"Oslos ledende maker space som viser frem innovasjon og håndverk","location":"Oslo","year":"2026","type":"Maker Space"},"homepage":{"tagline":"Håndverk · Innovasjon · Samarbeid","title":"Velkommen til<br>CaveTech","description":"Oslos ledende maker space hvor designere, ingeniører og kreative profesjonelle utforsker ideer og bringer innovasjon til liv.","explore":"Utforsk","featured_work":"Fremhevet arbeid","recent_projects":"Nylige prosjekter","explore_innovation":"Utforsk innovasjon og håndverk","community":"Fellesskap","our_members":"Våre medlemmer","talented_creators":"Talentfulle skapere og innovatører","join_community":"Bli del av fellesskapet","discover_more":"Oppdag mer om våre medlemmer, deres prosjekter, og utforsk det vi bygger sammen på CaveTech.","view_members":"Se alle medlemmer","browse_projects":"Se prosjekter","member_of_cavetech":"Medlem av CaveTech"},"people":{"page_title":"Medlemmer","section_label":"Fellesskap","heading":"Våre medlemmer","subheading":"Møt de talentfulle maker'ene, designerne og innovatørene på CaveTech","no_results":"Ingen medlemmer funnet"},"person":{"member_profile":"Medlemsprofil","about":"Om","contact":"Kontakt"},"projects":{"page_title":"Prosjekter","section_label":"Arbeid","heading":"Prosjekter","subheading":"Utforsk innovasjonen og håndverket","filter_all":"Alle","no_results":"Ingen prosjekter funnet i denne kategorien.","by":"av"},"project":{"about_project":"Om dette prosjektet","created_by":"Laget av","related_projects":"Relaterte prosjekter"},"about":{"page_title":"Om oss","section_label":"Vår historie","heading":"Om oss","subheading":"Oppdag hvem vi er og hva som driver vår misjon","about_us":"Om oss","history":"Vår historie","location":"Lokasjon","get_in_touch":"Ta kontakt"}},
+            en: {"nav":{"home":"Home","about":"About","people":"Members","projects":"Projects","admin":"Admin"},"footer":{"contact":"Contact","follow":"Follow","description":"Oslo's premier maker space showcasing innovation and craft","location":"Oslo","year":"2026","type":"Maker Space"},"homepage":{"tagline":"Craft · Innovation · Collaboration","title":"Welcome to<br>CaveTech","description":"Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.","explore":"Explore","featured_work":"Featured Work","recent_projects":"Recent Projects","explore_innovation":"Explore innovation and craft","community":"Community","our_members":"Our Members","talented_creators":"Talented creators and innovators","join_community":"Join the Community","discover_more":"Discover more about our members, their projects, and explore what we're building together at CaveTech.","view_members":"View All Members","browse_projects":"Browse Projects","member_of_cavetech":"Member of CaveTech"},"people":{"page_title":"Members","section_label":"Community","heading":"Our Members","subheading":"Meet the talented makers, designers, and innovators at CaveTech","no_results":"No members found"},"person":{"member_profile":"Member Profile","about":"About","contact":"Contact"},"projects":{"page_title":"Projects","section_label":"Work","heading":"Projects","subheading":"Explore innovation and craft","filter_all":"All","no_results":"No projects found in this category.","by":"by"},"project":{"about_project":"About this Project","created_by":"Created by","related_projects":"Related Projects"},"about":{"page_title":"About Us","section_label":"Our Story","heading":"About Us","subheading":"Discover who we are and what drives our mission","about_us":"About Us","history":"Our History","location":"Location","get_in_touch":"Get In Touch"}},
+            "zh-hans": {"nav":{"home":"首页","about":"关于","people":"成员","projects":"项目","admin":"管理员"},"footer":{"contact":"联系","follow":"关注","description":"奥斯陆首屈一指的创意工坊,展示创新和工艺","location":"奥斯陆","year":"2026","type":"创意工坊"},"homepage":{"tagline":"工艺 · 创新 · 合作","title":"欢迎来到<br>CaveTech","description":"奥斯陆首屈一指的创意工坊,设计师、工程师和创意专业人士在这里探索想法并将创新带入生活。","explore":"探索","featured_work":"精选作品","recent_projects":"最近的项目","explore_innovation":"探索创新和工艺","community":"社区","our_members":"我们的成员","talented_creators":"才华横溢的创造者和创新者","join_community":"加入社区","discover_more":"了解更多关于我们的成员、他们的项目,以及我们在 CaveTech 一起构建的内容。","view_members":"查看所有成员","browse_projects":"浏览项目","member_of_cavetech":"CaveTech 成员"},"people":{"page_title":"成员","section_label":"社区","heading":"我们的成员","subheading":"认识 CaveTech 才华横溢的创客、设计师和创新者","no_results":"未找到成员"},"person":{"member_profile":"成员资料","about":"关于","contact":"联系"},"projects":{"page_title":"项目","section_label":"作品","heading":"项目","subheading":"探索创新和工艺","filter_all":"全部","no_results":"在此类别中未找到项目。","by":"来自"},"project":{"about_project":"关于此项目","created_by":"由...创建","related_projects":"相关项目"},"about":{"page_title":"关于我们","section_label":"我们的故事","heading":"关于我们","subheading":"了解我们是谁以及什么推动我们的使命","about_us":"关于我们","history":"我们的历史","location":"位置","get_in_touch":"与我们联系"}}
+        };
 
-        // Load translations on page load
-        async function loadTranslations() {
-            try {
-                const response = await fetch(`/static/i18n/${currentLanguage}.json`);
-                translations = await response.json();
-                applyTranslations();
-            } catch (error) {
-                console.error('Failed to load translations:', error);
-            }
-        }
+        let currentLanguage = localStorage.getItem('language') || 'nb';
+        let translations = allTranslations[currentLanguage] || allTranslations.en;
 
         // Set language and reload translations
         function setLanguage(lang) {
             currentLanguage = lang;
             localStorage.setItem('language', lang);
-            loadTranslations();
+            translations = allTranslations[lang] || allTranslations.en;
+            applyTranslations();
+            location.reload(); // Reload page to apply full language change
         }
 
         // Apply translations to DOM
@@ -331,7 +328,7 @@
         }
 
         // Load translations on page load
-        document.addEventListener('DOMContentLoaded', loadTranslations);
+        document.addEventListener('DOMContentLoaded', applyTranslations);
     </script>
 </body>
 </html>
