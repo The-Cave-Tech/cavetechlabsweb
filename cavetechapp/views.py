@@ -1,6 +1,7 @@
 """
 Views for the Cave Tech Labs website.
 """
+import json
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Person, Project, Category, SiteSettings
@@ -24,7 +25,16 @@ class AboutView(View):
 
     def get(self, request):
         settings = SiteSettings.get_settings()
-        context = {'settings': settings}
+        # Build translations JSON for the template
+        site_translations = {
+            'about_content': settings.about_content_translations,
+            'history': settings.history_translations,
+            'about_title': settings.about_title_translations,
+        }
+        context = {
+            'settings': settings,
+            'site_translations_json': json.dumps(site_translations),
+        }
         return render(request, 'cavetechapp/about.html', context)
 
 
