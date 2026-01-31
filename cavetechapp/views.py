@@ -31,9 +31,16 @@ class AboutView(View):
             'history': settings.history_translations,
             'about_title': settings.about_title_translations,
         }
+        
+        # Get Norwegian versions for data-default (since Norwegian is the default language)
+        default_about_content = settings.about_content_translations.get('nb', settings.about_content)
+        default_history = settings.history_translations.get('nb', settings.history)
+        
         context = {
             'settings': settings,
             'site_translations_json': json.dumps(site_translations),
+            'default_about_content': default_about_content,
+            'default_history': default_history,
         }
         return render(request, 'cavetechapp/about.html', context)
 

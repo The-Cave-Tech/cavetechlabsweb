@@ -26,7 +26,7 @@
         <div class="mb-24">
             <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary" data-i18n="about.about_us">About Us</p>
             <div class="prose prose-invert max-w-none">
-                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line" id="about-content-display" data-field="about_content" data-default="{{ settings.about_content|escapejs }}">{{ settings.about_content }}</p>
+                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line" id="about-content-display" data-field="about_content" data-default="{{ default_about_content|escapejs }}">{{ default_about_content }}</p>
             </div>
         </div>
         {% endif %}
@@ -36,7 +36,7 @@
         <div class="mb-24">
             <p class="text-neutral-600 text-[10px] tracking-[0.35em] uppercase mb-8 font-primary" data-i18n="about.history">Our History</p>
             <div class="prose prose-invert max-w-none">
-                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line" id="history-content-display" data-field="history" data-default="{{ settings.history|escapejs }}">{{ settings.history }}</p>
+                <p class="text-neutral-300 text-lg leading-relaxed font-primary whitespace-pre-line" id="history-content-display" data-field="history" data-default="{{ default_history|escapejs }}">{{ default_history }}</p>
             </div>
         </div>
         {% endif %}
