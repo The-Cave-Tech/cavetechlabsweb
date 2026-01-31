@@ -481,9 +481,12 @@
         if (translationsScript) {
             try {
                 siteTranslations = JSON.parse(translationsScript.textContent);
+                console.log('✓ Loaded site translations:', Object.keys(siteTranslations));
             } catch (e) {
                 console.warn('Could not parse site translations:', e);
             }
+        } else {
+            console.warn('site-translations script tag not found');
         }
 
         let currentLanguage = localStorage.getItem('language') || 'nb';
@@ -550,8 +553,10 @@
                 const defaultText = element.getAttribute('data-default');
                 
                 if (siteTranslations && siteTranslations[field] && siteTranslations[field][currentLanguage]) {
+                    console.log(`Applying ${currentLanguage} translation for field: ${field}`);
                     element.textContent = siteTranslations[field][currentLanguage];
                 } else {
+                    console.log(`No translation for field: ${field}, using default`);
                     element.textContent = defaultText || '';
                 }
             });
@@ -562,6 +567,13 @@
 
         // Load translations on page load
         document.addEventListener('DOMContentLoaded', applyTranslations);
+        
+        // Also apply immediately if DOM is already ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyTranslations);
+        } else {
+            applyTranslations();
+        }
     </script>
 </body>
 </html>
