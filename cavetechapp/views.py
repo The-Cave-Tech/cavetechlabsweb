@@ -37,9 +37,12 @@ class AboutView(View):
         default_about_content = settings.about_content_translations.get('nb', settings.about_content)
         default_history = settings.history_translations.get('nb', settings.history)
         
+        # Create JSON without escaping unicode characters or newlines
+        json_str = json.dumps(site_translations, ensure_ascii=False, separators=(',', ': '))
+        
         context = {
             'settings': settings,
-            'site_translations_json': mark_safe(json.dumps(site_translations, ensure_ascii=False)),
+            'site_translations_json': mark_safe(json_str),
             'default_about_content': default_about_content,
             'default_history': default_history,
         }
