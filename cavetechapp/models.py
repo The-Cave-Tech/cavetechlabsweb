@@ -3,13 +3,20 @@ Models for the Cave Tech Labs website.
 """
 from django.db import models
 from django.utils.text import slugify
+from django.db.models import JSONField
 
 
 class SiteSettings(models.Model):
     """Model for storing site-wide settings like About Us, Contact Info, etc."""
     about_title = models.CharField(max_length=200, default="About The Cave Tech")
+    about_title_translations = JSONField(default=dict, blank=True, help_text="Translations: {'nb': '...', 'en': '...', 'zh-hans': '...'}")
+    
     about_content = models.TextField(blank=True, help_text="Main about us content")
+    about_content_translations = JSONField(default=dict, blank=True, help_text="Translations: {'nb': '...', 'en': '...', 'zh-hans': '...'}")
+    
     history = models.TextField(blank=True, help_text="History section content")
+    history_translations = JSONField(default=dict, blank=True, help_text="Translations: {'nb': '...', 'en': '...', 'zh-hans': '...'}")
+    
     address = models.TextField(blank=True, help_text="Physical address")
     email = models.EmailField(blank=True, help_text="Contact email address")
     instagram = models.URLField(blank=True, help_text="Instagram profile URL")

@@ -323,6 +323,22 @@
                 }
             });
 
+            // Translate dynamic content (from SiteSettings)
+            document.querySelectorAll('[data-translations]').forEach(element => {
+                try {
+                    const translations = JSON.parse(element.getAttribute('data-translations'));
+                    const defaultText = element.getAttribute('data-default');
+                    
+                    if (translations && translations[currentLanguage]) {
+                        element.textContent = translations[currentLanguage];
+                    } else {
+                        element.textContent = defaultText;
+                    }
+                } catch (e) {
+                    // If parsing fails, keep default text
+                }
+            });
+
             // Update document language
             document.documentElement.lang = currentLanguage;
         }
