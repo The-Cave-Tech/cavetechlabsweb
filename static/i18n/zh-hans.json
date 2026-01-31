@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "people": "成员",
+    "projects": "项目",
+    "admin": "管理员"
+  },
+  "footer": {
+    "contact": "联系",
+    "follow": "关注",
+    "description": "奥斯陆首屈一指的创意工坊,展示创新和工艺",
+    "location": "奥斯陆",
+    "year": "2026",
+    "type": "创意工坊"
+  },
+  "homepage": {
+    "tagline": "工艺 · 创新 · 合作",
+    "title": "欢迎来到<br>CaveTech",
+    "description": "奥斯陆首屈一指的创意工坊,设计师、工程师和创意专业人士在这里探索想法并将创新带入生活。",
+    "explore": "探索",
+    "featured_work": "精选作品",
+    "recent_projects": "最近的项目",
+    "explore_innovation": "探索创新和工艺",
+    "community": "社区",
+    "our_members": "我们的成员",
+    "talented_creators": "才华横溢的创造者和创新者",
+    "join_community": "加入社区",
+    "discover_more": "了解更多关于我们的成员、他们的项目,以及我们在 CaveTech 一起构建的内容。",
+    "view_members": "查看所有成员",
+    "browse_projects": "浏览项目",
+    "member_of_cavetech": "CaveTech 成员"
+  },
+  "people": {
+    "page_title": "成员",
+    "section_label": "社区",
+    "heading": "我们的成员",
+    "subheading": "认识 CaveTech 才华横溢的创客、设计师和创新者",
+    "no_results": "未找到成员"
+  },
+  "person": {
+    "member_profile": "成员资料",
+    "about": "关于",
+    "contact": "联系"
+  },
+  "projects": {
+    "page_title": "项目",
+    "section_label": "作品",
+    "heading": "项目",
+    "subheading": "探索创新和工艺",
+    "filter_all": "全部",
+    "no_results": "在此类别中未找到项目。",
+    "by": "来自"
+  },
+  "project": {
+    "about_project": "关于此项目",
+    "created_by": "由...创建",
+    "related_projects": "相关项目"
+  },
+  "about": {
+    "page_title": "关于我们",
+    "section_label": "我们的故事",
+    "heading": "关于我们",
+    "subheading": "了解我们是谁以及什么推动我们的使命",
+    "about_us": "关于我们",
+    "history": "我们的历史",
+    "location": "位置",
+    "get_in_touch": "与我们联系"
+  }
+}

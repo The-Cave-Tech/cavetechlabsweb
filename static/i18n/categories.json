@@ -1,0 +1,32 @@
+{
+  "nb": {
+    "3d_printing": "3D-utskrift",
+    "woodworking": "Tømmerfaget",
+    "metalworking": "Metallbearbeiding",
+    "electronics": "Elektronikk",
+    "software": "Programvare",
+    "art": "Kunst og design",
+    "robotics": "Robotikk",
+    "other": "Annet"
+  },
+  "en": {
+    "3d_printing": "3D Printing",
+    "woodworking": "Woodworking",
+    "metalworking": "Metalworking",
+    "electronics": "Electronics",
+    "software": "Software",
+    "art": "Art & Design",
+    "robotics": "Robotics",
+    "other": "Other"
+  },
+  "zh-hans": {
+    "3d_printing": "3D打印",
+    "woodworking": "木工",
+    "metalworking": "金属加工",
+    "electronics": "电子产品",
+    "software": "软件",
+    "art": "艺术与设计",
+    "robotics": "机器人",
+    "other": "其他"
+  }
+}

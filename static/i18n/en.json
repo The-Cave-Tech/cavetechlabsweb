@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "people": "Members",
+    "projects": "Projects",
+    "admin": "Admin"
+  },
+  "footer": {
+    "contact": "Contact",
+    "follow": "Follow",
+    "description": "Oslo's premier maker space showcasing innovation and craft",
+    "location": "Oslo",
+    "year": "2026",
+    "type": "Maker Space"
+  },
+  "homepage": {
+    "tagline": "Craft · Innovation · Collaboration",
+    "title": "Welcome to<br>CaveTech",
+    "description": "Oslo's premier maker space where designers, engineers, and creative professionals explore ideas and bring innovation to life.",
+    "explore": "Explore",
+    "featured_work": "Featured Work",
+    "recent_projects": "Recent Projects",
+    "explore_innovation": "Explore innovation and craft",
+    "community": "Community",
+    "our_members": "Our Members",
+    "talented_creators": "Talented creators and innovators",
+    "join_community": "Join the Community",
+    "discover_more": "Discover more about our members, their projects, and explore what we're building together at CaveTech.",
+    "view_members": "View All Members",
+    "browse_projects": "Browse Projects",
+    "member_of_cavetech": "Member of CaveTech"
+  },
+  "people": {
+    "page_title": "Members",
+    "section_label": "Community",
+    "heading": "Our Members",
+    "subheading": "Meet the talented makers, designers, and innovators at CaveTech",
+    "no_results": "No members found"
+  },
+  "person": {
+    "member_profile": "Member Profile",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "projects": {
+    "page_title": "Projects",
+    "section_label": "Work",
+    "heading": "Projects",
+    "subheading": "Explore innovation and craft",
+    "filter_all": "All",
+    "no_results": "No projects found in this category.",
+    "by": "by"
+  },
+  "project": {
+    "about_project": "About this Project",
+    "created_by": "Created by",
+    "related_projects": "Related Projects"
+  },
+  "about": {
+    "page_title": "About Us",
+    "section_label": "Our Story",
+    "heading": "About Us",
+    "subheading": "Discover who we are and what drives our mission",
+    "about_us": "About Us",
+    "history": "Our History",
+    "location": "Location",
+    "get_in_touch": "Get In Touch"
+  }
+}

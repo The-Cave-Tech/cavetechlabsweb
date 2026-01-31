@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "about": "Om",
+    "people": "Medlemmer",
+    "projects": "Prosjekter",
+    "admin": "Admin"
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "follow": "Følg",
+    "description": "Oslos ledende maker space som viser frem innovasjon og håndverk",
+    "location": "Oslo",
+    "year": "2026",
+    "type": "Maker Space"
+  },
+  "homepage": {
+    "tagline": "Håndverk · Innovasjon · Samarbeid",
+    "title": "Velkommen til<br>CaveTech",
+    "description": "Oslos ledende maker space hvor designere, ingeniører og kreative profesjonelle utforsker ideer og bringer innovasjon til liv.",
+    "explore": "Utforsk",
+    "featured_work": "Fremhevet arbeid",
+    "recent_projects": "Nylige prosjekter",
+    "explore_innovation": "Utforsk innovasjon og håndverk",
+    "community": "Fellesskap",
+    "our_members": "Våre medlemmer",
+    "talented_creators": "Talentfulle skapere og innovatører",
+    "join_community": "Bli del av fellesskapet",
+    "discover_more": "Oppdag mer om våre medlemmer, deres prosjekter, og utforsk det vi bygger sammen på CaveTech.",
+    "view_members": "Se alle medlemmer",
+    "browse_projects": "Se prosjekter",
+    "member_of_cavetech": "Medlem av CaveTech"
+  },
+  "people": {
+    "page_title": "Medlemmer",
+    "section_label": "Fellesskap",
+    "heading": "Våre medlemmer",
+    "subheading": "Møt de talentfulle maker'ene, designerne og innovatørene på CaveTech",
+    "no_results": "Ingen medlemmer funnet"
+  },
+  "person": {
+    "member_profile": "Medlemsprofil",
+    "about": "Om",
+    "contact": "Kontakt"
+  },
+  "projects": {
+    "page_title": "Prosjekter",
+    "section_label": "Arbeid",
+    "heading": "Prosjekter",
+    "subheading": "Utforsk innovasjonen og håndverket",
+    "filter_all": "Alle",
+    "no_results": "Ingen prosjekter funnet i denne kategorien.",
+    "by": "av"
+  },
+  "project": {
+    "about_project": "Om dette prosjektet",
+    "created_by": "Laget av",
+    "related_projects": "Relaterte prosjekter"
+  },
+  "about": {
+    "page_title": "Om oss",
+    "section_label": "Vår historie",
+    "heading": "Om oss",
+    "subheading": "Oppdag hvem vi er og hva som driver vår misjon",
+    "about_us": "Om oss",
+    "history": "Vår historie",
+    "location": "Lokasjon",
+    "get_in_touch": "Ta kontakt"
+  }
+}
