@@ -4,6 +4,7 @@ Views for the Cave Tech Labs website.
 import json
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.utils.html import mark_safe
 from .models import Person, Project, Category, SiteSettings
 
 
@@ -38,7 +39,7 @@ class AboutView(View):
         
         context = {
             'settings': settings,
-            'site_translations_json': json.dumps(site_translations),
+            'site_translations_json': mark_safe(json.dumps(site_translations, ensure_ascii=False)),
             'default_about_content': default_about_content,
             'default_history': default_history,
         }
