@@ -137,12 +137,60 @@
             animation: scrollHint 2.5s ease-in-out infinite;
         }
         
-        /* Grid pattern background */
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+        /* Mobile menu styles */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .hamburger {
+            display: none;
+            width: 24px;
+            height: 24px;
+            flex-direction: column;
+            justify-content: space-around;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            transition: all 0.3s ease-out;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-menu.open {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -157,16 +205,25 @@
                 <a href="{% url 'cavetechapp:index' %}" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <span class="text-3xl font-light" style="font-family: var(--font-logo);">CaveTech</span>
                 </a>
-                <div class="flex items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase">
-                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.home">Home</a>
-                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.about">About</a>
-                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.people">People</a>
-                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.projects">Projects</a>
-                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors" data-i18n="nav.admin">Admin</a>
+                
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger text-neutral-400 hover:text-white md:hidden" id="hamburger-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <div class="nav-menu flex flex-col md:flex-row items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase md:gap-6 absolute md:static top-full left-0 right-0 md:bg-transparent bg-black/95 md:border-0 border-t border-white/5 px-6 md:px-0 py-4 md:py-0 w-full md:w-auto">
+                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.home">Home</a>
+                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.about">About</a>
+                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.people">People</a>
+                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.projects">Projects</a>
+                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.admin">Admin</a>
                     
                     <!-- Language Switcher Dropdown -->
-                    <div class="relative group">
-                        <button class="text-neutral-400 hover:text-white transition-colors flex items-center gap-1" title="Switch Language">
+                    <div class="relative group w-full md:w-auto">
+                        <button class="text-neutral-400 hover:text-white transition-colors flex items-center gap-1 w-full md:w-auto py-2 md:py-0" title="Switch Language">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:text-white transition-colors">
                                 <circle cx="12" cy="12" r="10"/>
                                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -176,7 +233,7 @@
                         </button>
                         
                         <!-- Dropdown Menu -->
-                        <div class="absolute right-0 mt-0 w-40 bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-10">
+                        <div class="absolute left-0 md:right-0 md:left-auto mt-2 w-full md:w-40 bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-10">
                             <button onclick="setLanguage('nb')" class="w-full px-4 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center gap-2">
                                 <span class="text-lg">🇳🇴</span>
                                 <span>Norsk (Norwegian)</span>
@@ -573,6 +630,25 @@
             document.addEventListener('DOMContentLoaded', applyTranslations);
         } else {
             applyTranslations();
+        }
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+            
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    navMenu.classList.remove('open');
+                });
+            });
         }
     </script>
 </body>
