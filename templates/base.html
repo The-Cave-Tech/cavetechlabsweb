@@ -179,6 +179,45 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
         
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            width: 100%;
+            font-family: var(--font-primary);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            width: 100%;
+            padding: 0.5rem 0;
+            color: rgba(165, 165, 165, 1);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: white;
+        }
+        
+        .nav-menu.open {
+            display: flex;
+        }
+        
+        .hamburger {
+            display: flex;
+        }
+        
         @media (min-width: 768px) {
             .hamburger {
                 display: none !important;
@@ -186,20 +225,19 @@
             
             .nav-menu {
                 display: flex !important;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .hamburger {
-                display: flex !important;
-            }
-            
-            .nav-menu {
-                display: none;
+                flex-direction: row;
+                position: static;
+                background-color: transparent;
+                border-top: none;
+                padding: 0;
+                width: auto;
+                gap: 1.5rem;
+                align-items: center;
             }
             
-            .nav-menu.open {
-                display: flex;
+            .nav-menu a {
+                width: auto;
+                padding: 0;
             }
         }
     </style>
@@ -224,12 +262,12 @@
                 </button>
                 
                 <!-- Navigation Menu -->
-                <div class="nav-menu flex flex-col md:flex-row items-center gap-6 font-primary text-xs tracking-[0.2em] uppercase md:gap-6 absolute md:static top-full left-0 right-0 md:bg-transparent bg-black/95 md:border-0 border-t border-white/5 px-6 md:px-0 py-4 md:py-0 w-full md:w-auto">
-                    <a href="{% url 'cavetechapp:index' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.home">Home</a>
-                    <a href="{% url 'cavetechapp:about' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.about">About</a>
-                    <a href="{% url 'cavetechapp:people_list' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.people">People</a>
-                    <a href="{% url 'cavetechapp:projects_list' %}" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.projects">Projects</a>
-                    <a href="/admin/" class="text-neutral-400 hover:text-white transition-colors w-full md:w-auto py-2 md:py-0" data-i18n="nav.admin">Admin</a>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="{% url 'cavetechapp:index' %}" data-i18n="nav.home">Home</a>
+                    <a href="{% url 'cavetechapp:about' %}" data-i18n="nav.about">About</a>
+                    <a href="{% url 'cavetechapp:people_list' %}" data-i18n="nav.people">People</a>
+                    <a href="{% url 'cavetechapp:projects_list' %}" data-i18n="nav.projects">Projects</a>
+                    <a href="/admin/" data-i18n="nav.admin">Admin</a>
                     
                     <!-- Language Switcher Dropdown -->
                     <div class="relative group w-full md:w-auto">
