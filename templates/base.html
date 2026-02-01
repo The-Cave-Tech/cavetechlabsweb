@@ -149,9 +149,9 @@
         }
         
         .hamburger {
-            display: none;
             width: 24px;
             height: 24px;
+            display: flex;
             flex-direction: column;
             justify-content: space-around;
             cursor: pointer;
@@ -179,9 +179,19 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .hamburger {
-                display: flex;
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hamburger {
+                display: flex !important;
             }
             
             .nav-menu {
@@ -207,7 +217,7 @@
                 </a>
                 
                 <!-- Hamburger Menu Button -->
-                <button class="hamburger text-neutral-400 hover:text-white md:hidden" id="hamburger-toggle" aria-label="Toggle menu">
+                <button class="hamburger text-neutral-400 hover:text-white" id="hamburger-toggle" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
                     <span></span>
